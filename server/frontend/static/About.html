@@ -1,11 +1,12 @@
 <html>
 <head>
-  <!-- Link the style sheet here -->
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
 <div>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
     <div class="container-fluid">
-      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <h2 style="padding-right: 5%;">Best Cars Dealership</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,44 +26,74 @@
     </div>
   </nav>
   
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      <!-- Insert header information here -->
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
-        </div>
-      </div>
-
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
-        </div>
-      </div>
-
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
-        </div>
-      </div>
-    </div>
-    </div>
+  <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
+    <div class="banner" name="about-header" style="background-color: #f8f9fa; padding: 30px; border-radius: 10px;">
+      <h1 style="color: #007bff;">About Best Cars Dealership</h1>
+      <h4 style="color: #333; line-height: 1.6;">
+        Welcome to Best Cars dealership, home to the best cars in North America. 
+        We specialize in selling domestic and imported cars at reasonable prices. 
+        With over 25 years of experience, we're committed to providing exceptional 
+        customer service and quality vehicles that exceed expectations.
+      </h4>
+      <p style="color: #666; margin-top: 15px; font-size: 16px;">
+        Our mission is to make car buying a hassle-free experience with transparent pricing, 
+        certified pre-owned vehicles, and financing options for every budget.
+      </p>
     </div>
     
-</div>
+    <h2 style="text-align: center; margin: 40px 0 20px 0; color: #333;">Meet Our Leadership Team</h2>
+    
+    <div style="display: flex; flex-direction: row; margin: auto; justify-content: space-around; flex-wrap: wrap;">
+      <div class="card" style="width: 30%; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 10px;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="John Smith - CEO">
+        <div class="card-body" style="padding: 20px;">
+          <h4 class="title" style="color: #007bff; margin-bottom: 5px;">John Smith</h4>
+          <p style="color: #555; font-weight: bold;">CEO & Founder</p>
+          <p class="card-text" style="color: #666; line-height: 1.5;">
+            John founded Best Cars in 1998 with a vision to revolutionize car dealership experience. 
+            With 30+ years in automotive industry, he ensures our commitment to quality and customer satisfaction.
+          </p>
+          <p style="color: #333; margin-top: 10px;">john.smith@bestcars.com</p>
+        </div>
+      </div>
 
+      <div class="card" style="width: 30%; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 10px;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=350&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZmVtYWxlJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Sarah Johnson - Sales Director">
+        <div class="card-body" style="padding: 20px;">
+          <h4 class="title" style="color: #007bff; margin-bottom: 5px;">Sarah Johnson</h4>
+          <p style="color: #555; font-weight: bold;">Sales Director</p>
+          <p class="card-text" style="color: #666; line-height: 1.5;">
+            Sarah leads our sales team with 15 years of automotive expertise. 
+            She's passionate about matching customers with their perfect vehicle and ensuring seamless buying experience.
+          </p>
+          <p style="color: #333; margin-top: 10px;">sarah.johnson@bestcars.com</p>
+        </div>
+      </div>
+
+      <div class="card" style="width: 30%; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 10px;">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Michael Chen - Service Manager">
+        <div class="card-body" style="padding: 20px;">
+          <h4 class="title" style="color: #007bff; margin-bottom: 5px;">Michael Chen</h4>
+          <p style="color: #555; font-weight: bold;">Service Manager</p>
+          <p class="card-text" style="color: #666; line-height: 1.5;">
+            Michael oversees our service department with ASE Master Technician certification. 
+            He ensures every vehicle meets our rigorous 150-point inspection before sale.
+          </p>
+          <p style="color: #333; margin-top: 10px;">michael.chen@bestcars.com</p>
+        </div>
+      </div>
+    </div>
+    
+    <div style="background-color: #f8f9fa; padding: 20px; margin-top: 30px; border-radius: 10px;">
+      <h3 style="text-align: center; color: #333;">Why Choose Best Cars?</h3>
+      <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+        <li>150-point certified pre-owned inspection on all vehicles</li>
+        <li>Best price guarantee - We'll match any competitor's offer</li>
+        <li>Flexible financing options with approval in 30 minutes</li>
+        <li>7-day return policy on all vehicles</li>
+        <li>Free 1-year warranty on all certified pre-owned cars</li>
+      </ul>
+    </div>
+  </div>
+</div>
 </html>
