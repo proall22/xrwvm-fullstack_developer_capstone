@@ -1,8 +1,8 @@
 # Uncomment the following imports before adding the Model code
 
-# from django.db import models
-# from django.utils.timezone import now
-# from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+from django.utils.timezone import now
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Create your models here.
@@ -12,6 +12,13 @@
 # - Description
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
+class CarMake(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    # Other fields as needed
+    
+    def __str__(self):
+        return self.name  # Return the name as the string representation
 
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
@@ -23,3 +30,35 @@
 # - Year (IntegerField) with min value 2015 and max value 2023
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
+class CarModel(models.Model):
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
+    name = models.CharField(max_length=100)
+    
+    # Define the choices for car types
+    CAR_TYPES = [
+        ('SEDAN', 'Sedan'),
+        ('SUV', 'SUV'),
+        ('WAGON', 'Wagon'),
+        ('TRUCK', 'Truck'),
+        ('COUPE', 'Coupe'),
+        ('CONVERTIBLE', 'Convertible'),
+        ('HATCHBACK', 'Hatchback'),
+        ('VAN', 'Van'),
+    ]
+    
+    type = models.CharField(max_length=20, choices=CAR_TYPES, default='SUV')
+    year = models.IntegerField(
+        default=2023,
+        validators=[
+            MaxValueValidator(2023),
+            MinValueValidator(2015)
+        ]
+    )
+    
+    # Additional fields
+    dealer_id = models.IntegerField(default=1)  # refers to a dealer created in Cloudant database
+    created_date = models.DateTimeField(default=now)
+    
+    def __str__(self):
+        return f"{self.car_make.name} {self.name} ({self.year})"  # Return car make, model and year
+        
