@@ -16,7 +16,7 @@ class CarMake(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     # Other fields as needed
-    
+
     def __str__(self):
         return self.name  # Return the name as the string representation
 
@@ -31,9 +31,10 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 class CarModel(models.Model):
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
+    # Many-to-One relationship
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    
+
     # Define the choices for car types
     CAR_TYPES = [
         ('SEDAN', 'Sedan'),
@@ -45,8 +46,9 @@ class CarModel(models.Model):
         ('HATCHBACK', 'Hatchback'),
         ('VAN', 'Van'),
     ]
-    
-    type = models.CharField(max_length=20, choices=CAR_TYPES, default='SUV')
+
+    type = models.CharField(max_length=20, choices=CAR_TYPES,
+                            default='SUV')
     year = models.IntegerField(
         default=2023,
         validators=[
@@ -54,11 +56,12 @@ class CarModel(models.Model):
             MinValueValidator(2015)
         ]
     )
-    
+
     # Additional fields
-    dealer_id = models.IntegerField(default=1)  # refers to a dealer created in Cloudant database
+    # refers to a dealer created in Cloudant database
+    dealer_id = models.IntegerField(default=1)
     created_date = models.DateTimeField(default=now)
-    
+
     def __str__(self):
-        return f"{self.car_make.name} {self.name} ({self.year})"  # Return car make, model and year
-        
+        # Return car make, model and year
+        return f"{self.car_make.name} {self.name} ({self.year})"
