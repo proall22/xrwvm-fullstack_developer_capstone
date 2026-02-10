@@ -1,12 +1,12 @@
 # Uncomment the required imports before adding the code
 
-# from django.shortcuts import render
-# from django.http import HttpResponseRedirect, HttpResponse
-# from django.contrib.auth.models import User
-# from django.shortcuts import get_object_or_404, render, redirect
-# from django.contrib.auth import logout
-# from django.contrib import messages
-# from datetime import datetime
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth import logout
+from django.contrib import messages
+from datetime import datetime
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -39,27 +39,63 @@ def login_user(request):
     return JsonResponse(data)
 
 # Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
+def logout_request(request):
+    # Get the user object based on session id in request
+    username = request.user.username
+    print("Log out the user `{}`".format(username))
+    # Logout user in the request
+    logout(request)
+    # Return JSON response with empty username
+    data = {"userName": ""}
+    return JsonResponse(data)
 
 # Create a `registration` view to handle sign up request
-# @csrf_exempt
-# def registration(request):
-# ...
-
-# # Update the `get_dealerships` view to render the index page with
-# a list of dealerships
-# def get_dealerships(request):
-# ...
-
-# Create a `get_dealer_reviews` view to render the reviews of a dealer
-# def get_dealer_reviews(request,dealer_id):
-# ...
-
-# Create a `get_dealer_details` view to render the dealer details
-# def get_dealer_details(request, dealer_id):
-# ...
-
-# Create a `add_review` view to submit a review
-# def add_review(request):
-# ...
+@csrf_exempt
+def registration(request):
+    context = {}
+    # Load JSON data from the request body
+    data = json.loads(request.body)
+    username = data['userName']
+    password = data['password']
+    first_name = data['firstName']
+    last_name = data['lastName']
+    email = data['email']
+    username_exist = False
+    email_exist = False
+    
+    try:
+        # Check if user already exists
+        User.objects.get(username=username)
+        username_exist = True
+    except:
+        # If not, simply log this is a new user
+        logger.debug("{} is new user".format(username))
+    
+    # Check if email already exists
+    try:
+        User.objects.get(email=email)
+        email_exist = True
+    except:
+        logger.debug("{} is new email".format(email))
+    
+    # If it is a new user and new email
+    if not username_exist and not email_exist:
+        # Create user in auth_user table
+        user = User.objects.create_user(
+            username=username, 
+            first_name=first_name, 
+            last_name=last_name,
+            password=password, 
+            email=email
+        )
+        # Login the user and redirect to list page
+        login(request, user)
+        data = {"userName": username, "status": "Authenticated"}
+        return JsonResponse(data)
+    else:
+        if username_exist:
+            data = {"userName": username, "error": "Username already exists"}
+        else:
+            data = {"userName": username, "error": "Email already registered"}
+        return JsonResponse(data)
+        
